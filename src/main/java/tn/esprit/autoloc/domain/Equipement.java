@@ -1,3 +1,4 @@
+
 package tn.esprit.autoloc.domain;
 
 import jakarta.persistence.*;
@@ -5,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Set;
+import java.util.HashSet;
 
 @Entity
 @Getter
@@ -18,4 +22,11 @@ public class Equipement {
     private Long idEquipement;
 
     private String libelle;
+
+    // Association Equipement <-> Vehicule
+    @ManyToMany(
+            mappedBy = "equipements",
+            fetch = FetchType.LAZY
+    )
+    private Set<Vehicule> vehicules = new HashSet<>();
 }

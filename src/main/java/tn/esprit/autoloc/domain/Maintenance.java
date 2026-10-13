@@ -1,3 +1,4 @@
+
 package tn.esprit.autoloc.domain;
 
 import jakarta.persistence.*;
@@ -24,4 +25,8 @@ public class Maintenance {
     private LocalDate dateFin;
 
     private String description;
+
+    // Association Maintenance -> Vehicule
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Vehicule vehicule;
 }

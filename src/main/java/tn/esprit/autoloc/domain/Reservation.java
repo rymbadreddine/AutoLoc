@@ -1,3 +1,4 @@
+
 package tn.esprit.autoloc.domain;
 
 import jakarta.persistence.*;
@@ -25,4 +26,20 @@ public class Reservation {
 
     @Enumerated(EnumType.STRING)
     private StatutReservation statut;
+
+    // Association Reservation -> Client
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Client client;
+
+    // Association Reservation -> Vehicule
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Vehicule vehicule;
+
+    // Association Reservation <-> Contrat
+    @OneToOne(
+            mappedBy = "reservation",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private Contrat contrat;
 }
